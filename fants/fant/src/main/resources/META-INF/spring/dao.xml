@@ -14,7 +14,9 @@
 	<bean id="fantsDAO" class="com.test.services.dao.data.fants.FantsDAO">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
+	<bean id="usersDAO" class="com.test.services.dao.data.fants.UsersDAO">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://127.0.0.1:3306/fants"/>
