@@ -10,14 +10,18 @@ import com.test.services.rest.response.ResponseCreator;
 
 public class CustomExceptionMapper implements ExceptionMapper<Exception> {
 	@Context
-	private HttpHeaders requestHeaders;	
-	
-	private String getHeaderVersion() {		
+	private HttpHeaders requestHeaders;
+
+	private String getHeaderVersion() {
 		return requestHeaders.getRequestHeader("version").get(0);
 	}
-	
-    public Response toResponse(Exception ex) {    	
-    	System.out.println(ex.getMessage() + ex.getCause());
-        return ResponseCreator.error(500, Error.SERVER_ERROR.getCode(), getHeaderVersion());
-    }
+
+	public Response toResponse(Exception ex) {
+		System.out.println(ex.getMessage() + ex.getCause());
+		for (StackTraceElement stackTraceElement : ex.getStackTrace()) {
+			System.out.println(stackTraceElement.toString());
+		}
+		return ResponseCreator.error(500, Error.SERVER_ERROR.getCode(),
+				getHeaderVersion());
+	}
 }

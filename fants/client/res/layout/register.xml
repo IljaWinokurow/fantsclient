@@ -9,35 +9,39 @@
         android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="text" >
-
+        android:ems="10" >
     </EditText>
 
     <EditText
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword" />
+        android:ems="10" />
 
     <Button
         android:id="@+id/loginBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Войти" />
+        android:text="Зарегестрировать" />
 
 <Button
-    android:id="@+id/gotoRegister"
-    android:layout_width="wrap_content"
+    android:id="@+id/gotoRegister" 
+    android:layout_width="wrap_content" 
     android:layout_height="wrap_content"
-    android:layout_gravity="center_horizontal|center"
-    android:layout_marginTop="10dip"
     android:gravity="center_horizontal"
+    android:layout_gravity="center_horizontal|center"
+    android:textSize="30px"
     android:padding="20px"
-    android:text="Новый пользователь"
-    android:textSize="30px" />
-
+    android:layout_marginTop="10dip"
+    android:text="Обновить"
+    />
+<TextView 
+    android:layout_width="fill_parent" 
+    android:layout_height="wrap_content" 
+    android:text="..."
+    android:textSize="100dip"
+    android:gravity="center_horizontal"
+    android:id="@+id/temper"
+    android:textColor="#EEE3C4"
+    />
 </LinearLayout>

@@ -7,8 +7,9 @@
 //*********************************************************
 package com.test.services.fants.rest;
 
-import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
+import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
@@ -24,12 +25,12 @@ public class UsersServiceJSON implements IUsersService {
 	private IUsersDAO usersDAO;
 
 	// for customersDAO bean property injection
-	public IUsersDAO getFantsDAO() {
+	public IUsersDAO getUsersDAO() {
 		return usersDAO;
 	}
 
-	public void setFantsDAO(IUsersDAO fantsDAO) {
-		this.usersDAO = fantsDAO;
+	public void setUsersDAO(IUsersDAO usersDAO) {
+		this.usersDAO = usersDAO;
 	}
 
 	// for retrieving request headers from context
@@ -74,14 +75,16 @@ public class UsersServiceJSON implements IUsersService {
 	// create row representing customer and returns created customer as
 	// object->JSON structure
 	@POST
-	@Consumes(MediaType.APPLICATION_JSON)
-	public Response registerUser(String username, String password) {
+	@javax.ws.rs.Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response registerUser(@QueryParam("username") String username,
+			@QueryParam("password") String password) {
 		System.out.println("POST");
 		if (usersDAO.insertNewUser(username, password)) {
 			return ResponseCreator.success(getHeaderVersion(), "created");
 		} else {
-			return ResponseCreator.error(500, Error.SERVER_ERROR.getCode(),
-					getHeaderVersion());
+			return ResponseCreator.error(500, Error.SERVER_ERROR.getCode(), "-"
+					+ username + ":" + password);
 		}
 	}
 }
