@@ -22,7 +22,7 @@ import javax.ws.rs.core.Response;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.test.services.customers.rest.exceptions.Error;
+import com.test.services.customers.rest.exceptions.ErrorRest;
 import com.test.services.dao.data.fants.FantsDAO;
 import com.test.services.dao.data.fants.IFantsDAO;
 import com.test.services.entities.Fant;
@@ -74,7 +74,7 @@ public class FantsServiceJSON implements IFantsService {
 				e.printStackTrace();
 			}
 		} else {
-			return ResponseCreator.error(404, Error.NOT_FOUND.getCode(),
+			return ResponseCreator.error(404, ErrorRest.NOT_FOUND.getCode(),
 					getHeaderVersion());
 		}
 		return null;

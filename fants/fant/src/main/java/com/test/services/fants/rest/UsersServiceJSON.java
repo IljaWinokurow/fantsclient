@@ -15,7 +15,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.test.services.customers.rest.exceptions.Error;
+import com.test.services.customers.rest.exceptions.ErrorRest;
 import com.test.services.dao.data.fants.IUsersDAO;
 import com.test.services.rest.response.ResponseCreator;
 
@@ -83,8 +83,8 @@ public class UsersServiceJSON implements IUsersService {
 		if (usersDAO.insertNewUser(username, password)) {
 			return ResponseCreator.success(getHeaderVersion(), "created");
 		} else {
-			return ResponseCreator.error(500, Error.SERVER_ERROR.getCode(), "-"
-					+ username + ":" + password);
+			return ResponseCreator.error(500, ErrorRest.SERVER_ERROR.getCode(),
+					"-" + username + ":" + password);
 		}
 	}
 }

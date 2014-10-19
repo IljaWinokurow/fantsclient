@@ -10,7 +10,7 @@ import org.apache.cxf.jaxrs.ext.RequestHandler;
 import org.apache.cxf.jaxrs.model.ClassResourceInfo;
 import org.apache.cxf.message.Message;
 
-import com.test.services.customers.rest.exceptions.Error;
+import com.test.services.customers.rest.exceptions.ErrorRest;
 import com.test.services.rest.response.ResponseCreator;
 
 public class PreInvokeHandler implements RequestHandler {
@@ -40,8 +40,8 @@ public class PreInvokeHandler implements RequestHandler {
 			return null;
 		} else {
 			// authentication failed, request the authentication, add the realm
-			return ResponseCreator.error(401, Error.NOT_AUTHORIZED.getCode(),
-					headers.get("version").get(0));
+			return ResponseCreator.error(401, ErrorRest.NOT_AUTHORIZED
+					.getCode(), headers.get("version").get(0));
 		}
 
 	}

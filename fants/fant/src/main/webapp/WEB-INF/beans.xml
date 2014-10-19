@@ -14,16 +14,42 @@
 	<!-- Imported bean for dao -->
 	<import resource="classpath:META-INF/spring/dao.xml"/>
 
-	<bean id="customersService" class="com.test.services.fants.rest.FantsServiceJSON">
+	<bean id="fantsService" class="com.test.services.fants.rest.FantsServiceJSON">
 		<property name="fantsDAO" ref="fantsDAO"/>
 	</bean>
 
+	<bean id="usersService" class="com.test.services.fants.rest.UsersServiceJSON">
+		<property name="usersDAO" ref="usersDAO"/>
+	</bean>
+	
+		<bean id="authService" class="com.test.services.fants.rest.AuthServiceJSON">
+		<property name="authDAO" ref="authDAO"/>
+	</bean>
+	
 	<bean id="preInvokeHandler" class="com.test.services.rest.PreInvokeHandler" />
 	<bean id="customExceptionMapper" class="com.test.services.rest.CustomExceptionMapper" />
 
-	<jaxrs:server id="restContainer" address="/customer">
+	<jaxrs:server id="restContainer1" address="/fants">
 		<jaxrs:serviceBeans>
-			<ref bean="customersService" />
+			<ref bean="fantsService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean="preInvokeHandler" />
+			<ref bean="customExceptionMapper" />
+		</jaxrs:providers>
+	</jaxrs:server>
+	<jaxrs:server id="restContainer2" address="/users">
+		<jaxrs:serviceBeans>
+			<ref bean="usersService" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean="preInvokeHandler" />
+			<ref bean="customExceptionMapper" />
+		</jaxrs:providers>
+	</jaxrs:server>
+	<jaxrs:server id="restContainer3" address="/auth">
+	<jaxrs:serviceBeans>
+			<ref bean="authService" />
 		</jaxrs:serviceBeans>
 		<jaxrs:providers>
 			<ref bean="preInvokeHandler" />

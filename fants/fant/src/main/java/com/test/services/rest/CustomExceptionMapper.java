@@ -5,7 +5,7 @@ import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.ExceptionMapper;
 
-import com.test.services.customers.rest.exceptions.Error;
+import com.test.services.customers.rest.exceptions.ErrorRest;
 import com.test.services.rest.response.ResponseCreator;
 
 public class CustomExceptionMapper implements ExceptionMapper<Exception> {
@@ -21,7 +21,7 @@ public class CustomExceptionMapper implements ExceptionMapper<Exception> {
 		for (StackTraceElement stackTraceElement : ex.getStackTrace()) {
 			System.out.println(stackTraceElement.toString());
 		}
-		return ResponseCreator.error(500, Error.SERVER_ERROR.getCode(),
+		return ResponseCreator.error(500, ErrorRest.SERVER_ERROR.getCode(),
 				getHeaderVersion());
 	}
 }

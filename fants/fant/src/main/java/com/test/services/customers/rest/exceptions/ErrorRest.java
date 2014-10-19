@@ -1,6 +1,6 @@
 package com.test.services.customers.rest.exceptions;
 
-public enum Error {
+public enum ErrorRest {
 	NOT_AUTHORIZED(4010, "Not Authorized"), FORBIDDEN(4030, "Forbidden"), NOT_FOUND(
 			4040, "Not Found."), SERVER_ERROR(5001,
 			"Server error during operation.");
@@ -16,7 +16,7 @@ public enum Error {
 	 * @param description
 	 *            - error description
 	 */
-	private Error(int code, String description) {
+	private ErrorRest(int code, String description) {
 		this.code = code;
 		this.description = description;
 	}
