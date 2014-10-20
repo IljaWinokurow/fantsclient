@@ -17,6 +17,7 @@ import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -35,7 +36,6 @@ public class RegisterActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.register);
 		final Button button = (Button) findViewById(R.id.gotoRegister);
-		Log.w("myApp", "future.get===========================");
 		button.setOnClickListener(new Button.OnClickListener() {
 			public void onClick(View v) // ���� �� ������
 			{
@@ -59,8 +59,8 @@ public class RegisterActivity extends Activity {
 			{
 				try {
 					try {
-						EditText mEdit1 = (EditText) findViewById(R.id.username);
-						EditText mEdit2 = (EditText) findViewById(R.id.password);
+						EditText mEdit1 = (EditText) findViewById(R.id.username1);
+						EditText mEdit2 = (EditText) findViewById(R.id.password1);
 
 						registerUser(mEdit1.getText().toString(), md5(mEdit1
 								.getText().toString()));
@@ -111,7 +111,7 @@ public class RegisterActivity extends Activity {
 
 		return hex.toString();
 	}
-	
+
 	// ----------------------------------------------------------------
 
 	// ----------------------------------------------------------------
@@ -135,7 +135,7 @@ public class RegisterActivity extends Activity {
 		protected String doInBackground(String... params) {
 			String text = null;
 			try {
-				String targetURL = "http://192.168.2.101:8080/service/users"
+				String targetURL = "http://192.168.2.105:8080/service/users"
 						+ "?username=" + params[0] + "&password=" + params[1];
 				Client client = Client.create();
 				WebResource service = client.resource(UriBuilder.fromUri(
@@ -187,6 +187,10 @@ public class RegisterActivity extends Activity {
 				// txt.setText(results);
 				txt.setText(results);
 			}
+
+			Intent myIntent = new Intent(RegisterActivity.this,
+					MainActivity.class);
+			RegisterActivity.this.startActivity(myIntent);
 		}
 
 		@Override
@@ -201,7 +205,7 @@ public class RegisterActivity extends Activity {
 
 	private class RestHelper extends AsyncTask<String, Void, String> {
 
-		private static final String targetURL = "http://192.168.2.101:8080/service/fants";
+		private static final String targetURL = "http://192.168.2.105:8080/service/fants";
 
 		@Override
 		protected String doInBackground(String... params) {
@@ -251,8 +255,6 @@ public class RegisterActivity extends Activity {
 		@Override
 		protected void onProgressUpdate(Void... values) {
 		}
-
-		
 
 	}
 }

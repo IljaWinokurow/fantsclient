@@ -6,14 +6,14 @@
     >
 
     <EditText
-        android:id="@+id/username"
+        android:id="@+id/username1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" >
     </EditText>
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/password1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10" />
